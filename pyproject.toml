@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "end-to-end-forecasting"
+version = "0.1.0"
+description = "End-to-end demand forecasting system with batch training and REST serving."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.111.0",
+  "uvicorn>=0.30.0",
+  "pandas>=2.2.0",
+  "numpy>=1.26.0",
+  "scikit-learn>=1.5.0",
+  "pydantic>=2.8.0",
+  "pyyaml>=6.0.0",
+  "joblib>=1.4.0"
+]
+
+[project.optional-dependencies]
+advanced = [
+  "xgboost>=2.0.0",
+  "prophet>=1.1.5",
+  "tensorflow-cpu>=2.16.0"
+]
+dashboard = [
+  "streamlit>=1.36.0",
+  "plotly>=5.22.0"
+]
+dev = [
+  "pytest>=8.2.0",
+  "httpx>=0.27.0",
+  "ruff>=0.5.0"
+]
+
+[project.scripts]
+forecast-train = "forecasting.training.train:main"
+forecast-backtest = "forecasting.training.backtest:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
