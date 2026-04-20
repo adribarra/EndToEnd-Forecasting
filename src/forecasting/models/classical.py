@@ -25,6 +25,7 @@ class XGBoostLikeModel(ForecastModel):
             )
         except Exception:
             # Fallback keeps the pipeline runnable without optional deps.
+            # Uses RandomForestRegressor(similar to XGBoost) as "plan B"
             self.model = RandomForestRegressor(n_estimators=60, max_depth=12, random_state=42, n_jobs=-1)
 
     def fit(self, X, y) -> None:
