@@ -6,10 +6,10 @@ from datetime import timedelta
 import numpy as np
 import pandas as pd
 
-
+# Generate a synthetic database of daily sales for training/tests in case there isn't a real database.
 def simulate_sales_data(
     start_date: str = "2021-01-01",
-    periods: int = 365,
+    periods: int = 365,    # Daily range
     n_stores: int = 3,
     n_items: int = 10,
     seed: int = 42,
@@ -22,10 +22,10 @@ def simulate_sales_data(
             base = rng.integers(20, 80)
             trend = rng.uniform(0.01, 0.08)
             for i, date in enumerate(dates):
-                seasonality = 10 * math.sin((2 * math.pi * i) / 7) + 4 * math.sin((2 * math.pi * i) / 30)
+                seasonality = 10 * math.sin((2 * math.pi * i) / 7) + 4 * math.sin((2 * math.pi * i) / 30)    # Calculate weekly and monthly
                 promo = int(rng.random() < 0.12)
                 noise = rng.normal(0, 3)
-                sales = max(0, base + trend * i + seasonality + (12 * promo) + noise)
+                sales = max(0, base + trend * i + seasonality + (12 * promo) + noise)    # No negative sales
                 rows.append(
                     {
                         "date": date,
