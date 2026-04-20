@@ -37,6 +37,7 @@ This creates artifacts under `artifacts/models` and `artifacts/metrics`.
 ```bash
 uvicorn forecasting.api.app:app --reload
 ```
+Por defecto queda en: http://127.0.0.1:8000
 
 Endpoints:
 - `GET /health`
@@ -57,6 +58,30 @@ Example request payload:
   "month": 4,
   "week_of_year": 16,
   "is_weekend": 0
+}
+```
+Example using curl
+```
+curl -X POST "http://127.0.0.1:8000/forecast" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "store": 1,
+    "item": 3,
+    "promo": 0,
+    "lag_1": 120.5,
+    "lag_7": 110.2,
+    "rolling_mean_7": 115.1,
+    "day_of_week": 2,
+    "month": 4,
+    "week_of_year": 16,
+    "is_weekend": 0
+}'
+```
+Expected result (example):
+```
+{
+  "model": "lstm",
+  "forecast": 95.50016
 }
 ```
 
@@ -82,4 +107,5 @@ docker run -p 8000:8000 forecasting-api
 
 ## Dataset
 
+Used the [Store Item Demand Forecasting Dataset](https://www.kaggle.com/datasets/dhrubangtalukdar/store-item-demand-forecasting-dataset) from Kaggle.
 If `dataset/retail_sales.csv` is not available, training automatically uses a synthetic simulator.
