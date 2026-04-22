@@ -89,7 +89,7 @@ Expected result (example):
 }
 ```
 
-Payload field definitions (English):
+Payload field definitions:
 
 - `store`: store or branch identifier.
 - `item`: product identifier.
@@ -109,6 +109,7 @@ Payload field definitions (English):
 ```bash
 streamlit run dashboards/streamlit_app.py
 ```
+<img width="2550" height="3300" alt="image" src="https://github.com/user-attachments/assets/45225712-ae0b-4ee8-b572-c64b7afa8aff" />
 
 ## Tests and Lint
 
