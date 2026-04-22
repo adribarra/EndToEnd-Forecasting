@@ -1,4 +1,4 @@
-# End To End Forecasting (In Progress)
+# End To End Forecasting
 
 End-to-end demand forecasting system with:
 - Batch training
