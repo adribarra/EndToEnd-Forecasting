@@ -8,6 +8,10 @@ End-to-end demand forecasting system with:
 - Dashboard for model comparison
 - Docker and CI
 
+## Project Objective
+
+This repository provides an end-to-end demand forecasting workflow that turns historical sales data into actionable demand predictions for inventory planning. It includes data preparation, feature engineering, model training and comparison, model serving through an API, and delivery tooling (tests, Docker, CI) so teams can move from experimentation to a reproducible and deployable forecasting service. As a result, users obtain forecasted demand values (`forecast`) for a specific product-store context and time features, plus model quality evidence (MAE, RMSE, MAPE) to understand prediction reliability.
+
 ## Project Structure
 
 - [`src/`](src/) - application source package and modules ([details](src/README.md))
@@ -84,6 +88,21 @@ Expected result (example):
   "forecast": 95.50016
 }
 ```
+
+Payload field definitions (English):
+
+- `store`: store or branch identifier.
+- `item`: product identifier.
+- `promo`: promotion flag (`1` = promotion active, `0` = no promotion).
+- `lag_1`: previous-period sales value for the same `store` and `item`.
+- `lag_7`: sales value from 7 periods earlier for the same `store` and `item`.
+- `rolling_mean_7`: rolling mean of sales over the previous 7 periods.
+- `day_of_week`: day index (`0` = Monday, ..., `6` = Sunday).
+- `month`: month number (`1` to `12`).
+- `week_of_year`: ISO week number (`1` to `53`).
+- `is_weekend`: weekend flag (`1` = weekend, `0` = weekday).
+
+`forecast` is the predicted demand (`sales` target), not the item price.
 
 ## Dashboard
 
