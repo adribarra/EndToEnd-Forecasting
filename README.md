@@ -18,6 +18,11 @@ This repository provides an end-to-end demand forecasting workflow that turns hi
 - [`dashboards/`](dashboards/) - visualization apps and reporting UI ([details](dashboards/README.md))
 - [`tests/`](tests/) - automated unit and smoke tests ([details](tests/README.md))
 
+## Dataset
+
+Used the [Store Item Demand Forecasting Dataset](https://www.kaggle.com/datasets/dhrubangtalukdar/store-item-demand-forecasting-dataset) from Kaggle.
+If `dataset/retail_sales.csv` is not available, training automatically uses a synthetic simulator.
+
 ## Quickstart
 
 ```bash
@@ -102,14 +107,14 @@ Payload field definitions:
 - `week_of_year`: ISO week number (`1` to `53`).
 - `is_weekend`: weekend flag (`1` = weekend, `0` = weekday).
 
-`forecast` is the predicted demand (`sales` target), not the item price.
+`forecast` is the predicted demand (`sales` target)
 
 ## Dashboard
 
 ```bash
 streamlit run dashboards/streamlit_app.py
 ```
-<img width="2550" height="3300" alt="image" src="https://github.com/user-attachments/assets/45225712-ae0b-4ee8-b572-c64b7afa8aff" />
+<img width="500" height="600" alt="image" src="https://github.com/user-attachments/assets/45225712-ae0b-4ee8-b572-c64b7afa8aff" />
 
 ## Tests and Lint
 
@@ -124,8 +129,3 @@ pytest -q
 docker build -t forecasting-api .
 docker run -p 8000:8000 forecasting-api
 ```
-
-## Dataset
-
-Used the [Store Item Demand Forecasting Dataset](https://www.kaggle.com/datasets/dhrubangtalukdar/store-item-demand-forecasting-dataset) from Kaggle.
-If `dataset/retail_sales.csv` is not available, training automatically uses a synthetic simulator.
